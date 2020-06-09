@@ -2,6 +2,7 @@
 % shift
 
 % hi this is amberly 
+% hi this is ryan
 
 % optimalThickness = f(n, phaseShift)
 
