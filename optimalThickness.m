@@ -1,6 +1,7 @@
 % This is a function for computing optimal thickness from a given phase
 % shift
 
+% hi this is amberly 
 
 % optimalThickness = f(n, phaseShift)
 
