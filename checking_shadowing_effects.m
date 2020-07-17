@@ -72,3 +72,46 @@ plot(x2, angle(E2))
 plot(x3, angle(E3)*ones(size(x3)))
 plot(x4, angle(E4))
 hold off
+
+% trying to stitch the paths together
+            
+% 1 period of diffraction grating
+x = linspace(0, pitch, 200);
+
+% find phase shift of light passing through absorber
+phaseShift1 = exp(1i*(2*pi*L)/lambda);
+phaseShift2 = exp(1i.*(((2.*pi.*path2a)./lambda)+((2.*pi.*path2b.*n2)./lambda)));
+phaseShift3 = exp(1i*((2*pi*L*n2)/lambda));
+phaseShift4 = exp(1i.*(((2.*pi.*path4a.*n2)./lambda)+((2.*pi.*path4b)./lambda)));
+
+% find attenuation of intensity as light passes through absorber
+attenuation2 = exp(-((2.*pi.*beta).*path2b)./lambda);
+attenuation3 = exp(-(2*pi*L*beta)/lambda);
+attenuation4 = exp(-(2.*pi.*beta.*path4a)./lambda);
+
+path1 = phaseShift1;
+path2 = phaseShift2.*attenuation2;
+path3 = phaseShift3.*attenuation3;
+path4 = phaseShift4.*attenuation4;
+
+figure(3)
+plot(x1, abs(path1)*ones(size(x1)))
+hold on
+plot(x2, abs(path2))
+plot(x3, abs(path3)*ones(size(x3)))
+plot(x4, abs(path4))
+hold off
+
+
+if (x > 0 && x < halfPitch-(2*d*tand(6)))
+    grating = phaseShift1;
+elseif (x > halfPitch-(2*d*tand(6)) && x < halfPitch)
+    grating = phaseShift2*attenuation2;
+elseif (x > pitch && x < pitch-(2*d*tand(6)))
+    grating = phaseShift3*attenuation3;
+elseif (x > pitch-(2*d*tand(6)) && x < pitch)
+    grating = phaseShift4*attenuation4;
+end
+
+
+
