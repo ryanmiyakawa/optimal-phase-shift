@@ -30,24 +30,24 @@ halfPitch = pitch/2;
 N = 200;
 
 % 1. defining the domain
-domain = linspace(0, pitch, N);
+x = linspace(0, pitch, N);
 
 % 2. defining region boundaries
 boundaries = [halfPitch-(2*d*tand(6)), halfPitch, pitch-(2*d*tand(6)), pitch];
 
 % 3. defining each region
-region1 = domain >= 0 & domain <= boundaries(1);
-region2 = domain >= boundaries(1) & domain <= boundaries(2);
-region3 = domain >= boundaries(2) & domain <= boundaries(3);
-region4 = domain >= boundaries(3) & domain <= boundaries(4);
+region1 = x >= 0 & x <= boundaries(1);
+region2 = x >= boundaries(1) & x <= boundaries(2);
+region3 = x >= boundaries(2) & x <= boundaries(3);
+region4 = x >= boundaries(3) & x <= boundaries(4);
 
 % 4. defining E-field in each region
 % region 1
 E1 = E0*(exp(1i*(2*pi*L)/lambda));
 
 % region 2
-% redefined origin using 'domain(region2)-(halfPitch-(2*d*tand(6)))'
-path2a = abs(((L.*sind(6))-abs(domain(region2)-(halfPitch-(2*d*tand(6)))))./(sind(6))); 
+% redefined origin using 'x(region2)-(halfPitch-(2*d*tand(6)))'
+path2a = abs(((L.*sind(6))-abs(x(region2)-(halfPitch-(2*d*tand(6)))))./(sind(6))); 
 path2b = L - path2a;
 E2 = E0.*exp(1i.*(((2.*pi.*path2a)./lambda)+((2.*pi.*path2b.*n2)./lambda))).*exp(-((2.*pi.*beta).*path2b)./lambda);
 
@@ -55,8 +55,8 @@ E2 = E0.*exp(1i.*(((2.*pi.*path2a)./lambda)+((2.*pi.*path2b.*n2)./lambda))).*exp
 E3 = E0*exp(1i*((2*pi*L*n2)/lambda))*exp(-(2*pi*L*beta)/lambda);
 
 % region 4
-% redefined origin using 'domain(region4)-pitch'
-path4a = abs((domain(region4)-pitch)./sind(6)); 
+% redefined origin using 'x(region4)-pitch'
+path4a = abs((x(region4)-pitch)./sind(6)); 
 path4b = L - path4a;
 E4 = E0.*exp(1i.*(((2.*pi.*path4a.*n2)./lambda)+((2.*pi.*path4b)./lambda))).*exp(-(2.*pi.*beta.*path4a)./lambda);
 
@@ -73,10 +73,10 @@ grating(region4) = E4;
 % 7. plotting of E-field
 % magnitude
 figure(1)
-plot(domain, abs(grating))
+plot(x, abs(grating))
 % phase shift
 figure(2)
-plot(domain, angle(grating))
+plot(x, angle(grating))
 
 
 
