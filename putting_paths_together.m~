@@ -10,8 +10,7 @@ the plan
     a. reset the 'origin' for each region
 5. define new grating
     a. needs to have N elements
-6. set each region in grating equal to corresponding E-field
-7. plot magnitude and phase shift of E-field to check it worked
+6. set each region in grating equal to corresponding E field
 
 %}
 
@@ -41,13 +40,12 @@ region2 = domain >= boundaries(1) & domain <= boundaries(2);
 region3 = domain >= boundaries(2) & domain <= boundaries(3);
 region4 = domain >= boundaries(3) & domain <= boundaries(4);
 
-% 4. defining E-field in each region
+% 3. defining E-field in each region
 % region 1
 E1 = E0*(exp(1i*(2*pi*L)/lambda));
 
 % region 2
-% redefined origin using 'domain(region2)-(halfPitch-(2*d*tand(6)))'
-path2a = abs(((L.*sind(6))-abs(domain(region2)-(halfPitch-(2*d*tand(6)))))./(sind(6))); 
+path2a = abs(((L.*sind(6))-abs(domain(region2)-(halfPitch-(2*d*tand(6)))))./(sind(6))); % redefined origin
 path2b = L - path2a;
 E2 = E0.*exp(1i.*(((2.*pi.*path2a)./lambda)+((2.*pi.*path2b.*n2)./lambda))).*exp(-((2.*pi.*beta).*path2b)./lambda);
 
@@ -55,30 +53,19 @@ E2 = E0.*exp(1i.*(((2.*pi.*path2a)./lambda)+((2.*pi.*path2b.*n2)./lambda))).*exp
 E3 = E0*exp(1i*((2*pi*L*n2)/lambda))*exp(-(2*pi*L*beta)/lambda);
 
 % region 4
-% redefined origin using 'domain(region4)-pitch'
-path4a = abs((domain(region4)-pitch)./sind(6)); 
+path4a = abs((domain(region4)-pitch)./sind(6)); % redefined origin
 path4b = L - path4a;
 E4 = E0.*exp(1i.*(((2.*pi.*path4a.*n2)./lambda)+((2.*pi.*path4b)./lambda))).*exp(-(2.*pi.*beta.*path4a)./lambda);
 
-% 5. defining the grating
+% 4. defining the grating
 % initialize grating variable
 grating = zeros(1, N);
 
-% 6. define grating in each region with corresponding E-field
+% define grating in each region with corresponding E-field
 grating(region1) = E1;
 grating(region2) = E2;
 grating(region3) = E3;
 grating(region4) = E4;
-
-% 7. plotting of E-field
-% magnitude
-figure(1)
-plot(domain, abs(grating))
-% phase shift
-figure(2)
-plot(domain, angle(grating))
-
-
 
 
 
