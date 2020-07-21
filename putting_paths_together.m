@@ -45,7 +45,7 @@ E0 = 1;
 numOfPeriods = 5;
 pitch = 100;
 halfPitch = pitch/2;
-N = 200;
+N = 1000;
 
 % defining the domain
 x = linspace(0, pitch*numOfPeriods, N);
