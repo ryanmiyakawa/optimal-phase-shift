@@ -83,7 +83,7 @@ for i = 1:(numOfPeriods*4)
     elseif mod(i, 4) == 2
         region2 = (x >= boundaries(i) & x <= boundaries(i+1));
         x2 = abs(x(region2)-((i/4)*pitch-(2*d*tand(6))));
-        path2a = abs(((L.*sind(6))-x2./(sind(6)))); 
+        path2a = abs((((L.*sind(6))-x2)./(sind(6)))); 
         path2b = (L - path2a);
         E2 = E0.*exp(1i.*(((2.*pi.*path2a)./lambda)+((2.*pi.*path2b.*n2)./lambda))).*exp(-((2.*pi.*beta).*path2b)./lambda);
         grating(region2) = E2;
@@ -101,17 +101,6 @@ for i = 1:(numOfPeriods*4)
         disp('whoops something went wrong');
     end
 end
-
-%{
-so for region4
-i = 4, period = 1
-i = 8, period = 2
-i = 12, period = 3
-i = 16, etc
-i = 20
-
-so period number is i/4
-%}
 
 %{
 for each time the value of region is true, define E field. 
