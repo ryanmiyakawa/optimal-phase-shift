@@ -89,29 +89,8 @@ attenuation2 = exp(-((2.*pi.*beta).*path2b)./lambda);
 attenuation3 = exp(-(2*pi*L*beta)/lambda);
 attenuation4 = exp(-(2.*pi.*beta.*path4a)./lambda);
 
-path1 = phaseShift1;
-path2 = phaseShift2.*attenuation2;
-path3 = phaseShift3.*attenuation3;
-path4 = phaseShift4.*attenuation4;
-
-figure(3)
-plot(x1, abs(path1)*ones(size(x1)))
-hold on
-plot(x2, abs(path2))
-plot(x3, abs(path3)*ones(size(x3)))
-plot(x4, abs(path4))
-hold off
 
 
-if (x > 0 && x < halfPitch-(2*d*tand(6)))
-    grating = phaseShift1;
-elseif (x > halfPitch-(2*d*tand(6)) && x < halfPitch)
-    grating = phaseShift2*attenuation2;
-elseif (x > pitch && x < pitch-(2*d*tand(6)))
-    grating = phaseShift3*attenuation3;
-elseif (x > pitch-(2*d*tand(6)) && x < pitch)
-    grating = phaseShift4*attenuation4;
-end
 
 
 
