@@ -1,23 +1,25 @@
 
 %{
-convolve wafer image with gaussian
-1. define gaussian image as fxn of fwhm
-    - define fwhm
-2. determine what to convolve it with
-    - the bit that has the shot noise
-3. do the convolution
-4. plot the blurred image
+why does changing my N make my fft narrower?
+1. convince myself that normal grating of 5 periods has same fft 
+    regardless of sampling
+2. plot grating in N = 1000 and N = 2000
 %}
 
-% defining gaussian as fxn of fwhm
-range = 100;
-x = linspace(1, range, 100);
-fwhm = 20;
-sigma = fwhm/(2*sqrt(2*log(2)));
-mu = range/2;
-gaussian = (1/(sigma*sqrt(2*pi))).*exp(-((x-mu).^2)./(2.*sigma^2));
-plot(x, gaussian)
+% N = 500;
+% pitch = 200;
+% periods = 5;
+% x = linspace(0, pitch*periods, N);
+% grating = square((x.*(2*pi))./(pitch))+1;
 
-% convolve with some vector
-vector = linspace(1, 100, 100);
-convolution = conv(vector, gaussian);
+N = 2000;
+x = linspace(0, 10*pi, N);
+grating = square(x);
+
+% plot the grating
+figure(1)
+plot(x, grating)
+
+% plot the fft
+figure(2)
+plot(x, abs(fftshift(fft(grating))))
