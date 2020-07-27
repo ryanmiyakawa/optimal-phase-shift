@@ -1,0 +1,13 @@
+idx = linspace(-1, 1, 8);
+yidx = linspace(-2, 2, 8);
+
+% element i, j of each matrix corresponds to a point on the graph
+[x, y] = meshgrid(idx, yidx);
+surf(idx, yidx, x.^2+y.^2)
+
+%%
+fwhm = 10;
+mu = 50;
+sigma = fwhm/(2*sqrt(2*log(2)));
+gaussian = (1/sigma*sqrt(2*pi)).*exp(-(((x-mu).^2)/(2*(sigma^2))));
+plot
