@@ -36,6 +36,6 @@ area (cm^2) = (pitch*10^-9)*numOfPeriods*(amplitude*10^-9)*10^-14
 energy (mJ) = numOfPhotons*h*c/(1000*lambda) 
 numOfPhotons = energy*lambda*1000/(h*c)
 
-should i have it be 1 nm to 1 pixel?
+should i have it be 
 
 %} 
