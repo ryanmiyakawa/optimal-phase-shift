@@ -38,4 +38,7 @@ numOfPhotons = energy*lambda*1000/(h*c)
 
 should i have it be 1 nm to 1 pixel?
 
+if i have N pixels (x axis)...
+
+
 %} 
