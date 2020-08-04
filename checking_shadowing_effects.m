@@ -73,21 +73,6 @@ plot(x3, angle(E3)*ones(size(x3)))
 plot(x4, angle(E4))
 hold off
 
-% trying to stitch the paths together
-            
-% 1 period of diffraction grating
-x = linspace(0, pitch, 200);
-
-% find phase shift of light passing through absorber
-phaseShift1 = exp(1i*(2*pi*L)/lambda);
-phaseShift2 = exp(1i.*(((2.*pi.*path2a)./lambda)+((2.*pi.*path2b.*n2)./lambda)));
-phaseShift3 = exp(1i*((2*pi*L*n2)/lambda));
-phaseShift4 = exp(1i.*(((2.*pi.*path4a.*n2)./lambda)+((2.*pi.*path4b)./lambda)));
-
-% find attenuation of intensity as light passes through absorber
-attenuation2 = exp(-((2.*pi.*beta).*path2b)./lambda);
-attenuation3 = exp(-(2*pi*L*beta)/lambda);
-attenuation4 = exp(-(2.*pi.*beta.*path4a)./lambda);
 
 
 

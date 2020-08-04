@@ -5,7 +5,7 @@
 % deltas, betas: regular arrays
 function [materials, deltas, betas] = parseIndexFromDataFile(path)
 
-[num, txt, raw] = xlsread(path, 'Sheet1', 'A1:C7');
+[num, txt, raw] = xlsread(path, 'Sheet1', 'A1:C11');
 
 [Nr, Nc] = size(raw);
 counter = 0;
